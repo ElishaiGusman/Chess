@@ -8,4 +8,9 @@ package com.elishai.chess;
 abstract class ChessPiece {
     Color color;
     Position position;
+
+    public ChessPiece(Color color, Position position) {
+        this.color = color;
+        this.position = position;
+    }
 }

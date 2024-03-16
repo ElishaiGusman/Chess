@@ -1,5 +1,7 @@
 package com.elishai.chess;
 
 public class King extends ChessPiece{
-    //TODO
+    public King(Color color, Position position) {
+        super(color, position);
+    }
 }
