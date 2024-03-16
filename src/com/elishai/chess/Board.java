@@ -11,6 +11,6 @@ public class Board {
     }
 
     public void setupChessPieces() {
-        //TO-DO
+        //TODO
     }
 }
