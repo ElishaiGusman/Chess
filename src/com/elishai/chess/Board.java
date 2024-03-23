@@ -11,6 +11,17 @@ public class Board {
         board.put(position, chessPiece);
     }
 
+    public void removePiece(Position position) {
+        board.remove(position);
+    }
+
+    public void movePiece(Position from, Position to) {
+        ChessPiece piece = getChessPiece(from);
+
+        removePiece(from);
+        setPiece(to, piece);
+    }
+
     public void setupChessPieces() {
         for(Column column : Column.values()) {
             setPiece(new Position(column, 2), new Pawn(Color.WHITE, new Position(column, 2)));

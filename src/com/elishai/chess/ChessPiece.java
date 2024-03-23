@@ -1,5 +1,8 @@
 package com.elishai.chess;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /*Every single chess piece has:
 * 1) com.elishai.chess.Color
 * 2) Position on a board
@@ -13,6 +16,25 @@ public abstract class ChessPiece {
         this.color = color;
         this.position = position;
     }
+
+    public Set<Position> getAvailableCells(Board board) {
+        Set<Position> result = new HashSet<>();
+
+        for(PositionShift shift: getAvailableMoves())
+            if(this.getPosition().isShiftPossible(shift)) {
+                Position newPosition = this.getPosition().shift(shift);
+                if(isCellAvailableForMove(newPosition, board))
+                    result.add(newPosition);
+            }
+        return result;
+    }
+
+    private boolean isCellAvailableForMove(Position newPosition, Board board) {
+        return board.isCellEmpty(newPosition) || board.getChessPiece(newPosition).getColor() != this.getColor();
+    }
+
+    protected abstract Set<PositionShift> getAvailableMoves();
+
 
     public Color getColor() {
         return color;

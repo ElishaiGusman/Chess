@@ -11,6 +11,20 @@ public class Position {
         this.row = row;
     }
 
+    public Position shift(PositionShift shift) {
+        return new Position(Column.values()[this.getColumn().ordinal() + shift.getColumnShift()],
+                            this.getRow() + shift.getRowShift());
+    }
+
+    public boolean isShiftPossible(PositionShift shift) {
+        int c = this.getColumn().ordinal() + shift.getColumnShift();
+        int r = this.getRow() + shift.getRowShift();
+
+        if(c < 1 || c > 7)
+            return false;
+        return r >= 1 && r <= 8;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
