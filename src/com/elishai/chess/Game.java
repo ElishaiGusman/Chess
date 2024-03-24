@@ -27,6 +27,8 @@ public class Game {
             ChessPiece chessPiece = board.getChessPiece(fromPosition);
             Set<Position> availableCells = chessPiece.getAvailableCells(board);
 
+            renderer.render(board, chessPiece);
+
             Position targetPosition = InputPosition.inputAvailableCells(availableCells);
             board.movePiece(fromPosition, targetPosition);
 

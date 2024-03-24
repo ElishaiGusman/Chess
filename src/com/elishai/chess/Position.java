@@ -20,7 +20,7 @@ public class Position {
         int c = this.getColumn().ordinal() + shift.getColumnShift();
         int r = this.getRow() + shift.getRowShift();
 
-        if(c < 1 || c > 7)
+        if(c < 0 || c > 7)
             return false;
         return r >= 1 && r <= 8;
     }
