@@ -1,5 +1,7 @@
-package com.elishai.chess;
+package com.elishai.chess.pieces;
 
+import com.elishai.chess.Color;
+import com.elishai.chess.Position;
 import com.elishai.chess.pieces.*;
 
 public class ChessPieceFactory {

@@ -1,5 +1,7 @@
 package com.elishai.chess;
 
+import com.elishai.chess.pieces.ChessPiece;
+
 import java.util.Scanner;
 import java.util.Set;
 

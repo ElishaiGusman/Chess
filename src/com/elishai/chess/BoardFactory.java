@@ -1,6 +1,6 @@
 package com.elishai.chess;
 
-import com.elishai.chess.pieces.Pawn;
+import com.elishai.chess.pieces.ChessPieceFactory;
 
 public class BoardFactory {
     private final ChessPieceFactory chessPieceFactory = new ChessPieceFactory();

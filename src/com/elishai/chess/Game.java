@@ -1,5 +1,7 @@
 package com.elishai.chess;
 
+import com.elishai.chess.pieces.ChessPiece;
+
 import java.util.Set;
 
 public class Game {

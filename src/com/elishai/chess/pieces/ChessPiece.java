@@ -1,4 +1,9 @@
-package com.elishai.chess;
+package com.elishai.chess.pieces;
+
+import com.elishai.chess.Board;
+import com.elishai.chess.Color;
+import com.elishai.chess.Position;
+import com.elishai.chess.PositionShift;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -29,7 +34,7 @@ public abstract class ChessPiece {
         return result;
     }
 
-    private boolean isCellAvailableForMove(Position newPosition, Board board) {
+    protected boolean isCellAvailableForMove(Position newPosition, Board board) {
         return board.isCellEmpty(newPosition) || board.getChessPiece(newPosition).getColor() != this.getColor();
     }
 
