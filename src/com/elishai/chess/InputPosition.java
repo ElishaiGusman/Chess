@@ -1,5 +1,8 @@
 package com.elishai.chess;
 
+import com.elishai.chess.board.Board;
+import com.elishai.chess.board.BoardFactory;
+import com.elishai.chess.board.BoardRenderer;
 import com.elishai.chess.pieces.ChessPiece;
 import com.elishai.chess.pieces.King;
 

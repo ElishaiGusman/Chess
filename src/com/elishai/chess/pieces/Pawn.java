@@ -1,11 +1,10 @@
 package com.elishai.chess.pieces;
 
-import com.elishai.chess.Board;
-import com.elishai.chess.Color;
-import com.elishai.chess.Position;
-import com.elishai.chess.PositionShift;
+import com.elishai.chess.*;
+import com.elishai.chess.board.Board;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class Pawn extends ChessPiece {
@@ -39,8 +38,16 @@ public class Pawn extends ChessPiece {
 
     @Override
     protected boolean isCellAvailableForMove(Position newPosition, Board board) {
-        if(this.getPosition().getColumn() == newPosition.getColumn())
-            return board.isCellEmpty(newPosition);
+        if(this.getPosition().getColumn() == newPosition.getColumn()) {
+            int columnShift = Math.abs(this.getPosition().getRow() - newPosition.getRow());
+
+            if(columnShift == 2) {
+                List<Position> verticalCells = Utils.getVerticalCells(this.getPosition(), newPosition);
+
+                return (board.isCellEmpty(verticalCells.get(0)) && board.isCellEmpty(newPosition));
+            } else
+                return board.isCellEmpty(newPosition);
+        }
         else {
             if(board.isCellEmpty(newPosition))
                 return false;

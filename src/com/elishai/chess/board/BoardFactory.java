@@ -1,5 +1,9 @@
-package com.elishai.chess;
+package com.elishai.chess.board;
 
+import com.elishai.chess.Column;
+import com.elishai.chess.Move;
+import com.elishai.chess.Position;
+import com.elishai.chess.board.Board;
 import com.elishai.chess.pieces.ChessPieceFactory;
 
 public class BoardFactory {

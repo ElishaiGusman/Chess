@@ -1,6 +1,7 @@
 package com.elishai.chess.pieces;
 
 import com.elishai.chess.*;
+import com.elishai.chess.board.Board;
 
 import java.util.List;
 import java.util.Set;
