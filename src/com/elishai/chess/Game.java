@@ -25,14 +25,8 @@ public class Game {
             else
                 System.out.println("Black turn.");
 
-            Position fromPosition = InputPosition.inputPiecePositionForColor(isWhiteToMove ? Color.WHITE : Color.BLACK, board);
-            ChessPiece chessPiece = board.getChessPiece(fromPosition);
-            Set<Position> availableCells = chessPiece.getAvailableCells(board);
-
-            renderer.render(board, chessPiece);
-
-            Position targetPosition = InputPosition.inputAvailableCells(availableCells);
-            board.movePiece(fromPosition, targetPosition);
+            Move move = InputPosition.getInputMove(this.board, isWhiteToMove ? Color.WHITE : Color.BLACK, this.renderer);
+            board.movePiece(move);
 
             isWhiteToMove =! isWhiteToMove;
         }

@@ -6,7 +6,7 @@ public class BoardFactory {
     private final ChessPieceFactory chessPieceFactory = new ChessPieceFactory();
 
     public Board fromFEN(String fen) {
-        Board board = new Board();
+        Board board = new Board(fen);
 
         String[] parts     = fen.split(" ");
         String boardState  = parts[0];
@@ -34,5 +34,14 @@ public class BoardFactory {
         }
 
         return board;
+    }
+
+    public Board cloneBoard(Board board) {
+        Board clonedBoard = fromFEN(board.getStartPositionFenNotation());
+
+        for(Move move : clonedBoard.getMoves())
+            clonedBoard.movePiece(move);
+
+        return clonedBoard;
     }
 }

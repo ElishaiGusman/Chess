@@ -1,6 +1,7 @@
 package com.elishai.chess;
 
 import com.elishai.chess.pieces.ChessPiece;
+import com.elishai.chess.pieces.King;
 
 import java.util.Scanner;
 import java.util.Set;
@@ -63,6 +64,27 @@ public class InputPosition {
         }
     }
 
+    public static Move getInputMove(Board board, Color color, BoardRenderer renderer) {
+
+        while (true) {
+            Position fromPosition = InputPosition.inputPiecePositionForColor(color, board);
+            ChessPiece chessPiece = board.getChessPiece(fromPosition);
+            Set<Position> availableCells = chessPiece.getAvailableCells(board);
+
+            renderer.render(board, chessPiece);
+
+            Position targetPosition = InputPosition.inputAvailableCells(availableCells);
+            Move move = new Move(fromPosition, targetPosition);
+
+            if(isKingInCheck(board, color, move)) {
+                System.out.println("The king is in check! Please, make another move!");
+                continue;
+            }
+
+            return move;
+        }
+    }
+
     public static Position inputAvailableCells(Set<Position> positions) {
         while(true) {
             System.out.println("Enter the cell to move for the selected piece: ");
@@ -75,5 +97,14 @@ public class InputPosition {
 
             return input;
         }
+    }
+
+    private static boolean isKingInCheck(Board board, Color color, Move move) {
+        Board clonedBoard = (new BoardFactory()).cloneBoard(board);
+        clonedBoard.movePiece(move);
+
+        ChessPiece king = clonedBoard.getAllChessPiecesByColor(color).stream().filter(chessPiece -> chessPiece instanceof King).findFirst().get();
+
+        return clonedBoard.isCellUnderAttack(king.getPosition(), color.opposite());
     }
 }

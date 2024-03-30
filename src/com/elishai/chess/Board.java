@@ -7,8 +7,15 @@ import java.util.List;
 import java.util.Set;
 
 public class Board {
+
+    private final String startPositionFenNotation;
+    private List<Move> moves;
     HashMap<Position, ChessPiece> board = new HashMap<>();
 
+    public Board(String startPositionFenNotation) {
+        this.startPositionFenNotation = startPositionFenNotation;
+        moves = new ArrayList<>();
+    }
     public void setPiece(Position position, ChessPiece chessPiece) {
         chessPiece.setPosition(position);
         board.put(position, chessPiece);
@@ -18,11 +25,12 @@ public class Board {
         board.remove(position);
     }
 
-    public void movePiece(Position from, Position to) {
-        ChessPiece piece = getChessPiece(from);
+    public void movePiece(Move move) {
+        moves.add(move);
+        ChessPiece piece = getChessPiece(move.getFrom());
 
-        removePiece(from);
-        setPiece(to, piece);
+        removePiece(move.getFrom());
+        setPiece(move.getTo(), piece);
     }
 
     public void setupChessPieces() {
@@ -92,5 +100,13 @@ public class Board {
         }
 
         return false;
+    }
+
+    public String getStartPositionFenNotation() {
+        return startPositionFenNotation;
+    }
+
+    public List<Move> getMoves() {
+        return moves;
     }
 }
