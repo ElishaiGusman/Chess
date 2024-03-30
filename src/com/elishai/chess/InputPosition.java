@@ -21,7 +21,7 @@ public class InputPosition {
 
             char columnPos = line.charAt(0);
             char rowPos    = line.charAt(1);
-            columnPos = Character.isLowerCase(columnPos) ? Character.toUpperCase(columnPos) : columnPos;
+            columnPos      = Character.isLowerCase(columnPos) ? Character.toUpperCase(columnPos) : columnPos;
 
             if('A' > columnPos || columnPos > 'H') {
                 System.out.println("Invalid input!");

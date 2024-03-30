@@ -39,7 +39,29 @@ public abstract class ChessPiece {
     }
 
     protected abstract Set<PositionShift> getAvailableMoves();
+    protected Set<PositionShift> getPieceAttacks() {
+        return getAvailableMoves();
+    }
 
+
+    public Set<Position> getCellsUnderAttack(Board board) {
+        Set<PositionShift> piecesAttacks = getPieceAttacks();
+        Set<Position>      res           = new HashSet<>();
+
+        for (PositionShift piecesAttack : piecesAttacks) {
+            if(getPosition().isShiftPossible(piecesAttack)) {
+                Position shiftedPosition = getPosition().shift(piecesAttack);
+
+                if(isCellAvailableForAttack(shiftedPosition, board))
+                    res.add(shiftedPosition);
+            }
+        }
+        return res;
+    }
+
+    protected boolean isCellAvailableForAttack(Position position, Board board) {
+        return true;
+    }
 
     public Color getColor() {
         return color;

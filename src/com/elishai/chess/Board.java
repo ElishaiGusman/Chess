@@ -1,7 +1,10 @@
 package com.elishai.chess;
 import com.elishai.chess.pieces.*;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Set;
 
 public class Board {
     HashMap<Position, ChessPiece> board = new HashMap<>();
@@ -63,7 +66,31 @@ public class Board {
         return board.get(position);
     }
 
+    public List<ChessPiece> getAllChessPiecesByColor(Color color) {
+        List<ChessPiece> res = new ArrayList<>();
+
+        for(ChessPiece chessPiece : board.values()) {
+            if(chessPiece.getColor() == color)
+                res.add(chessPiece);
+        }
+
+        return res;
+    }
+
     public static boolean isCellBlack(Position position) {
         return (((position.getColumn().ordinal() + 1) + position.getRow())%2)==0;
+    }
+
+    public boolean isCellUnderAttack(Position newPosition, Color oppositeColor) {
+        List<ChessPiece> chessPieces = getAllChessPiecesByColor(oppositeColor);
+
+        for (ChessPiece chessPiece : chessPieces) {
+            Set<Position> cellsUnderAttack = chessPiece.getCellsUnderAttack(this);
+
+            if(cellsUnderAttack.contains(newPosition))
+                return true;
+        }
+
+        return false;
     }
 }

@@ -7,7 +7,7 @@ import java.util.Set;
 public class Game {
 
     private final Board board;
-    private BoardRenderer renderer;
+    private final BoardRenderer renderer;
 
     public Game(Board board) {
         this.board    = board;
